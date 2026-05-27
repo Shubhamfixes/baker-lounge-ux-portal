@@ -1,0 +1,6 @@
+{
+  "name": "Baker Lounge",
+  "description": "Premium Cake Shop in Sector 62, Noida - Interactive Menu and Live Booking Estimator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

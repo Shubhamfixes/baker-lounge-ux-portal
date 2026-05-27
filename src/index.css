@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, ui-serif, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Professional Luxury Obsidian & Premium Gold Palette */
+  --color-espresso: #090a0f; /* Deep Obsidian Black */
+  --color-gold: #d4af37;     /* Rich Metallic Gold */
+  --color-cream: #ece7e1;    /* Premium Alabaster Cream / Silk */
+  --color-charcoal: #111317; /* Rich Dark Charcoal */
+
+  --color-gold-50: #fbfaf7;
+  --color-gold-100: #f5eedf;
+  --color-gold-200: #e8dbbe;
+  --color-gold-300: #d4af37;
+  --color-gold-400: #d4af37; /* Brand core Gold */
+  --color-gold-550: #b18c4b;
+  --color-gold-600: #9e7a3e;
+  --color-gold-700: #7e5f2e;
+  --color-gold-800: #57401d;
+  --color-gold-900: #382811;
+
+  --color-cream-50: #f8fafc; /* Crisp Pearl Premium White */
+  --color-cream-100: #f1f5f9;
+  --color-cream-200: #e2e8f0;
+  --color-cream-300: #cbd5e1;
+  --color-cream-400: #94a3b8;
+  --color-cream-500: #64748b;
+  --color-cream-950: #020617;
+}
+
+/* Custom scrollbars and refined transitions matching slate colors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4af37/30;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Premium textured dark velvety charcoal background with subtle slate grids & gold grids */
+.artisan-parchment {
+  background-color: #090a0f;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, rgba(9, 10, 15, 0) 75%),
+    linear-gradient(rgba(226, 232, 240, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* Base Grainy Noise Overlay (Continuous Animated) */
+.noise-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E') repeat;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  animation: noise-move 0.3s infinite;
+}
+
+@keyframes noise-move {
+  0% { transform: translate(0,0) }
+  10% { transform: translate(-1%, -1.5%) }
+  20% { transform: translate(-2%, 1%) }
+  35% { transform: translate(1.5%, -2%) }
+  50% { transform: translate(-1%, 2.5%) }
+  65% { transform: translate(2%, 1%) }
+  80% { transform: translate(1%, -1%) }
+  90% { transform: translate(-1.5%, 1.5%) }
+  100% { transform: translate(0, 0) }
+}
+
+/* Custom Fluid Cursor styles (hidden on touch/mobile) */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"], input, select, textarea {
+    cursor: none;
+  }
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #d4af37;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+/* Custom premium gold & white cyber-glitch style */
+.cyber-glitch-text {
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+}
+.cyber-glitch-text::before,
+.cyber-glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+}
+.cyber-glitch-text::before {
+  color: #d4af37;
+  text-shadow: -2px 0 #d4af37;
+  clip-path: rect(24px, 999px, 90px, 0);
+}
+.cyber-glitch-text::after {
+  color: #e2e8f0;
+  text-shadow: 2px 0 #ffffff;
+  clip-path: rect(85px, 999px, 140px, 0);
+}
+
+/* Animations for Cyber Glitch */
+.cyber-glitch-animate::before {
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+.cyber-glitch-animate::after {
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(10% 0 85% 0); }
+  10% { clip-path: inset(80% 0 5% 0); }
+  20% { clip-path: inset(30% 0 65% 0); }
+  30% { clip-path: inset(15% 0 80% 0); }
+  45% { clip-path: inset(85% 0 10% 0); }
+  60% { clip-path: inset(5% 0 90% 0); }
+  75% { clip-path: inset(50% 0 45% 0); }
+  90% { clip-path: inset(92% 0 5% 0); }
+  100% { clip-path: inset(20% 0 75% 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(75% 0 15% 0); }
+  12% { clip-path: inset(25% 0 70% 0); }
+  25% { clip-path: inset(85% 0 5% 0); }
+  38% { clip-path: inset(5% 0 92% 0); }
+  50% { clip-path: inset(62% 0 32% 0); }
+  65% { clip-path: inset(15% 0 80% 0); }
+  80% { clip-path: inset(90% 0 2% 0); }
+  100% { clip-path: inset(5% 0 92% 0); }
+}
+
+/* Smooth Underline Magnetic Slide states */
+.magnetic-underline {
+  position: relative;
+}
+.magnetic-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #d4af37;
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.magnetic-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Decorative luxury gold wireframes and hairlines */
+.rose-gold-wire {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.wire-header-bottom {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  background-image: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.12), transparent);
+}
+
+.wire-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.18) 20%, rgba(212, 175, 55, 0.18) 80%, transparent);
+}
+
+.wire-box {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+}
+
+/* Luxury glass background - obsidian slate core */
+.artisan-glass {
+  background: rgba(13, 15, 20, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Card active high-end style */
+.card-active {
+  border: 1.5px solid #d4af37;
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.veg-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 2px;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.custom-shadow {
+  box-shadow: 0 4px 20px rgba(9, 10, 15, 0.4), 0 1px 3px rgba(9, 10, 15, 0.15);
+}
+
+.premium-card-shadow {
+  box-shadow: 0 12px 35px -4px rgba(9, 10, 15, 0.55), 0 4px 15px -2px rgba(9, 10, 15, 0.3);
+}
+
+/* Polished metallic shine reflection overlay */
+.metallic-shine {
+  position: relative;
+  overflow: hidden;
+}
+.metallic-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+.metallic-shine:hover::after {
+  left: 125%;
+}
+
+/* FRANZ BAKERY INSPIRED CUSTOM EFFECTS, STAMPS, BADGES & GLITCHES */
+
+/* Wavy / Curvy dividers representing custom hand-baked masterworks */
+.franz-wave-border {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"%3E%3Cpath d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,42.4V0Z" fill="%23111317" opacity=".10"%3E%3C/path%3E%3Cpath d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-36,130.83-34.93,42.54,1,80.81,18,119.82,34.3a443.25,443.25,0,0,0,111.39,32c32.55,3,63.15-3.32,93.59-13.34,31.06-10.22,60.58-25.26,90.69-38.16C908,12.28,963.68-.39,1022.62,1.15c44,1.14,83,16.78,121.84,35.2V0Z" fill="%23c09a3e" opacity=".15"%3E%3C/path%3E%3C/svg%3E');
+  background-size: 100% 100%;
+  height: 48px;
+  width: 100%;
+}
+
+/* Thick paper stickers with offset vintage shadows */
+.franz-sticker {
+  border: 3px solid #111317;
+  background-color: #fdf4b8;
+  color: #111317;
+  box-shadow: 5px 5px 0px #111317;
+  transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 0.2s ease;
+}
+.franz-sticker:hover {
+  transform: translate(-3px, -3px) rotate(-1.5deg);
+  box-shadow: 8px 8px 0px #111317;
+}
+
+/* Franz Quirky Wobble keyframes on Hover */
+.franz-wobble-hover {
+  transition: transform 0.25s ease-out;
+}
+.franz-wobble-hover:hover {
+  animation: franz-jolt 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes franz-jolt {
+  10%, 90% { transform: translate3d(-1px, 1px, 0) rotate(-0.5deg); }
+  20%, 80% { transform: translate3d(2px, -1px, 0) rotate(1deg); }
+  30%, 50%, 70% { transform: translate3d(-3px, 2px, 0) rotate(-2deg); }
+  40%, 60% { transform: translate3d(3px, -2px, 0) rotate(1.5deg); }
+}
+
+/* Continuous rotating badge seal */
+.franz-rotating-badge {
+  animation: franz-spin 18s linear infinite;
+}
+.franz-rotating-badge:hover {
+  animation-duration: 6s; /* Spins faster on hover for playful feedback */
+}
+
+@keyframes franz-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bouncy mechanical button */
+.franz-btn-bounce {
+  border: 2px solid #111317;
+  box-shadow: 3px 3px 0px #111317;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.franz-btn-bounce:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #111317;
+}
+.franz-btn-bounce:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #111317;
+}
+
+/* Fun pointer glitch or bounce effect */
+.custom-cursor-click {
+  animation: pointer-burst 0.3s ease-out forwards;
+}
+
+@keyframes pointer-burst {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
