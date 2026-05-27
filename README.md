@@ -3,7 +3,7 @@
 Welcome to **Baker Lounge**, a premium web platform designed for Noida Sector 62's signature cake atelier. This application showcases an exquisite collection of 100% vegetarian, artisanal designer cakes built for royalty.
 
 ## 🚀 Live Link
-- **Deployed App:** [Add your Netlify/Vercel URL here]
+- **Deployed link:** [https://baker-lounge.netlify.app](https://baker-lounge.netlify.app)
 
 ---
 
